@@ -1,0 +1,144 @@
+.form-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #140924 0%, #3a1c61 50%, #1a0b2e 100%);
+  padding: 32px;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  color: #ffffff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .brand-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .logo-icon {
+      height: 48px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 400;
+        letter-spacing: 2px;
+        color: #ffffff;
+      }
+      .subtitle {
+        font-size: 0.85rem;
+        color: #bfa3e6;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .btn-voltar {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.glass-card {
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  .form-wrapper {
+    padding: 16px;
+  }
+  .header .subtitle {
+    display: none;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+::ng-deep .dark-input {
+  width: 100%;
+
+  .mdc-text-field--outlined {
+    --mdc-outlined-text-field-outline-color: rgba(255, 255, 255, 0.3);
+    --mdc-outlined-text-field-hover-outline-color: rgba(255, 255, 255, 0.7);
+    --mdc-outlined-text-field-focus-outline-color: #bfa3e6;
+    --mdc-outlined-text-field-input-text-color: #ffffff;
+    --mdc-outlined-text-field-caret-color: #bfa3e6;
+  }
+
+  input,
+  textarea {
+    color: #ffffff !important;
+  }
+
+  .mdc-floating-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .mat-mdc-form-field-error {
+    color: #ff5252;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+
+  .btn-cancelar {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-salvar {
+    background-color: #ffffff;
+    color: #3a1c61;
+    font-weight: bold;
+    padding: 0 32px;
+
+    &:disabled {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+}
+
+:host {
+  display: block;
+}

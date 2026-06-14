@@ -1,0 +1,155 @@
+<div class="dashboard-container">
+  <header class="header">
+    <div class="brand-container">
+      <button mat-icon-button class="btn-voltar" routerLink="/login" title="Voltar ao Login">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <img src="/logo.svg" alt="Logo Attus" class="logo-icon" />
+
+      <div class="brand-text">
+        <h1>ATTUS</h1>
+        <span class="subtitle">PROCURADORIA DIGITAL | Gestão de Incidentes</span>
+      </div>
+    </div>
+
+    <button mat-flat-button class="btn-novo" routerLink="/chamados/novo">
+      <mat-icon>add</mat-icon>
+      Novo Chamado
+    </button>
+  </header>
+
+  <div class="kanban-board">
+    <div class="kanban-column">
+      <div class="column-header aberto">
+        <h2>
+          Abertos <span class="badge">{{ resumo?.abertos || 0 }}</span>
+        </h2>
+      </div>
+      <div
+        class="kanban-list"
+        id="lista-abertos"
+        cdkDropList
+        [cdkDropListData]="abertos"
+        [cdkDropListConnectedTo]="['lista-analise', 'lista-concluidos']"
+        (cdkDropListDropped)="drop($event, 'ABERTO')"
+      >
+        <mat-card class="kanban-card" *ngFor="let item of abertos" cdkDrag>
+          <div class="card-header">
+            <span class="id-tag">#{{ item.id }}</span>
+            <div style="display: flex; align-items: center; gap: 4px">
+              <a
+                mat-icon-button
+                [routerLink]="['/chamados/editar', item.id]"
+                style="transform: scale(0.7); color: #999"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+              <button
+                mat-icon-button
+                (click)="excluir(item.id)"
+                style="transform: scale(0.7); color: #ff5252"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              <mat-icon class="drag-handle" cdkDragHandle>drag_indicator</mat-icon>
+            </div>
+          </div>
+          <p class="equipamento">{{ item.equipamento }}</p>
+          <p class="descricao">{{ item.descricao }}</p>
+          <div class="card-footer">
+            <small>{{ item.dataAbertura | date: 'dd/MM HH:mm' }}</small>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="kanban-column">
+      <div class="column-header analise">
+        <h2>
+          Em Análise <span class="badge">{{ resumo?.emAnalise || 0 }}</span>
+        </h2>
+      </div>
+      <div
+        class="kanban-list"
+        id="lista-analise"
+        cdkDropList
+        [cdkDropListData]="emAnalise"
+        [cdkDropListConnectedTo]="['lista-abertos', 'lista-concluidos']"
+        (cdkDropListDropped)="drop($event, 'EM_ANALISE')"
+      >
+        <mat-card class="kanban-card" *ngFor="let item of emAnalise" cdkDrag>
+          <div class="card-header">
+            <span class="id-tag">#{{ item.id }}</span>
+            <div style="display: flex; align-items: center; gap: 4px">
+              <a
+                mat-icon-button
+                [routerLink]="['/chamados/editar', item.id]"
+                style="transform: scale(0.7); color: #999"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+              <button
+                mat-icon-button
+                (click)="excluir(item.id)"
+                style="transform: scale(0.7); color: #ff5252"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              <mat-icon class="drag-handle" cdkDragHandle>drag_indicator</mat-icon>
+            </div>
+          </div>
+          <p class="equipamento">{{ item.equipamento }}</p>
+          <p class="descricao">{{ item.descricao }}</p>
+          <div class="card-footer">
+            <small>{{ item.dataAbertura | date: 'dd/MM HH:mm' }}</small>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="kanban-column">
+      <div class="column-header concluido">
+        <h2>
+          Concluídos <span class="badge">{{ resumo?.concluidos || 0 }}</span>
+        </h2>
+      </div>
+      <div
+        class="kanban-list"
+        id="lista-concluidos"
+        cdkDropList
+        [cdkDropListData]="concluidos"
+        [cdkDropListConnectedTo]="['lista-abertos', 'lista-analise']"
+        (cdkDropListDropped)="drop($event, 'CONCLUIDO')"
+      >
+        <mat-card class="kanban-card concluido-card" *ngFor="let item of concluidos" cdkDrag>
+          <div class="card-header">
+            <span class="id-tag">#{{ item.id }}</span>
+            <div style="display: flex; align-items: center; gap: 4px">
+              <a
+                mat-icon-button
+                [routerLink]="['/chamados/editar', item.id]"
+                style="transform: scale(0.7); color: #999"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+              <button
+                mat-icon-button
+                (click)="excluir(item.id)"
+                style="transform: scale(0.7); color: #ff5252"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              <mat-icon class="drag-handle" cdkDragHandle>drag_indicator</mat-icon>
+            </div>
+          </div>
+          <p class="equipamento">{{ item.equipamento }}</p>
+          <p class="descricao">{{ item.descricao }}</p>
+          <div class="card-footer">
+            <small>{{ item.dataAbertura | date: 'dd/MM HH:mm' }}</small>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

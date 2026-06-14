@@ -1,0 +1,26 @@
+<div class="login-wrapper">
+  <div class="background-graphics"></div>
+
+  <div class="login-box">
+    <img src="/logo-tela-login.png" alt="Attus Procuradoria Digital" class="logo" />
+
+    <form [formGroup]="form" (ngSubmit)="avancar()">
+      <div class="input-group" [class.has-error]="email?.invalid && email?.touched">
+        <input type="email" formControlName="email" placeholder="E-mail*" />
+        <span class="user-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path
+              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+            />
+          </svg>
+        </span>
+      </div>
+
+      <div class="error-message" *ngIf="email?.invalid && email?.touched">Campo obrigatório</div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="form.invalid" class="btn-avancar">AVANÇAR</button>
+      </div>
+    </form>
+  </div>
+</div>

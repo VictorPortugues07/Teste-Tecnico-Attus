@@ -1,0 +1,62 @@
+<div class="form-wrapper">
+  <header class="header">
+    <div class="brand-container">
+      <img src="/logo.svg" alt="Logo Attus" class="logo-icon" />
+      <div class="brand-text">
+        <h1>ATTUS</h1>
+        <span class="subtitle">{{
+          modoEdicao ? 'EDIÇÃO DE INCIDENTE' : 'ABERTURA DE INCIDENTE'
+        }}</span>
+      </div>
+    </div>
+
+    <button mat-icon-button class="btn-voltar" routerLink="/chamados" title="Voltar ao Painel">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </header>
+
+  <div class="glass-card">
+    <h2 class="card-title">
+      {{ modoEdicao ? 'Editar Chamado #' + chamadoId : 'Detalhes do Novo Chamado' }}
+    </h2>
+
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="form-layout custom-dark-theme">
+      <mat-form-field appearance="outline" class="full-width dark-input">
+        <mat-label>Equipamento ou Sistema</mat-label>
+        <input
+          matInput
+          formControlName="equipamento"
+          placeholder="Ex: Impressora Epson, Relatório XPTO"
+        />
+
+        <mat-error *ngIf="equipamento?.hasError('required')">
+          O nome do equipamento é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="equipamento?.hasError('maxlength')">
+          O limite é de 100 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width dark-input">
+        <mat-label>Descrição do Problema</mat-label>
+        <textarea
+          matInput
+          formControlName="descricao"
+          rows="5"
+          placeholder="Descreva o que está acontecendo..."
+        ></textarea>
+
+        <mat-error *ngIf="descricao?.hasError('required')"> A descrição é obrigatória. </mat-error>
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-stroked-button type="button" class="btn-cancelar" routerLink="/chamados">
+          Cancelar
+        </button>
+        <button mat-flat-button class="btn-salvar" type="submit" [disabled]="form.invalid">
+          {{ modoEdicao ? 'Atualizar Chamado' : 'Salvar Chamado' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
