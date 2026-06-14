@@ -124,7 +124,7 @@ cd desafiobackend
 ## Clone o repositório
 
 ```bash
-git clone <link-do-seu-repositorio>
+git clone https://github.com/VictorPortugues07/Teste-Tecnico-Attus
 ```
 
 ## Acesse a pasta do front-end
